@@ -1,6 +1,7 @@
 {
   "emdesigner": {
     "Overview": "/",
-    "module name here": "core.html"
+    "module name here": "core.html",
+    "per unit analysis of pmsm machines": "electricmachinepu.html"
   }
 }
