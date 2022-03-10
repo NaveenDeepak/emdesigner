@@ -45,15 +45,14 @@ class spm():
             self.power.append(p)
 
     def plot_profile(self):
-        fig, axs = plt.subplots(2, 2)
-        axs[0,0].plot(self.speed, self.torque)
-        axs[0,0].set_title('torque vs speed')
-        axs[0,1].plot(self.speed, self.power)
-        axs[0,1].set_title('power vs speed')
-        axs[1,0].plot(self.speed, self.gamma)
-        axs[1,0].set_title('gamma vs speed')
-        axs[1,1].plot(self.torque, self.gamma)
-        axs[1,1].set_title('gamma vs torque')
+        fig, axs = plt.subplots(3)
+        fig.set_figheight(8)
+        axs[0].plot(self.speed, self.torque)
+        axs[0].set_title('torque vs speed')
+        axs[1].plot(self.speed, self.power)
+        axs[1].set_title('power vs speed')
+        axs[2].plot(self.speed, self.gamma)
+        axs[2].set_title('gamma vs speed')
 
         # Hide x labels and tick labels for top plots and y ticks for right plots.
         for ax in axs.flat:

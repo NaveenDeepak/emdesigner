@@ -10,10 +10,10 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: module name here
+      title: place holder
       url: core.html
     - output: web,pdf
-      title: per unit analysis of pmsm machines
+      title: pmsm per unit analysis
       url: electricmachinepu.html
     output: web
     title: emdesigner
