@@ -24,6 +24,8 @@ class spm():
         self.values = dict.fromkeys(['speed', 'torque', 'power'])
 
     def motor_puprofile(self, gamma_limit = 85):
+        """ this method calculates the per unit profile of the machine with current angle limit of 85 degrees
+        """
         gamma_deg = 0
         gamma = gamma_deg*np.pi/180
         # constant torque region
@@ -49,6 +51,8 @@ class spm():
             self.power.append(p)
 
     def motor_profile(self, Vb, Pb, wb):
+        """This method takes Vb, Pb, wb as the base values for line voltage, KVA rating of the machine, base speed respectively
+        """
         self.Vb = Vb
         self.Pb = Pb
         self.wb = wb
@@ -59,6 +63,8 @@ class spm():
 
 
     def plot_puprofile(self):
+        """ plots the motor performance profile in p.u
+        """
         fig, axs = plt.subplots(3)
         fig.set_figheight(8)
         axs[0].plot(self.speed, self.torque)
@@ -76,6 +82,8 @@ class spm():
         plt.show()
 
     def plot_profile(self):
+        """ plots the motor performance profile in actual values
+        """
         fig, axs = plt.subplots(3)
         fig.set_figheight(8)
         axs[0].plot(self.values['speed'], self.values['torque'])
