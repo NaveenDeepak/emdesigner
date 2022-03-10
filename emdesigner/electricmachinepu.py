@@ -12,18 +12,22 @@ class spm():
     def __init__(self, lpu):
         self.lpu = lpu
         self.phi_m = np.sqrt(1-lpu**2)
+        self.Vb = 0
+        self.Pb = 0
+        self.wb = 0
         self.speed = []
         self.torque = []
         self.voltage = []
         self.current = []
         self.gamma = []
         self.power = []
+        self.values = dict.fromkeys(['speed', 'torque', 'power'])
 
-    def motorprofile(self, gamma_limit = 85):
+    def motor_puprofile(self, gamma_limit = 85):
         gamma_deg = 0
+        gamma = gamma_deg*np.pi/180
         # constant torque region
         for o in np.arange(0,1.1,0.1):
-            gamma = gamma_deg*np.pi/180
             v = o * np.sqrt( (self.phi_m - np.sin(gamma))**2 + (self.lpu * np.cos(gamma))**2 )
             t = self.phi_m * np.cos(gamma)
             p = t*o
@@ -35,7 +39,7 @@ class spm():
         # constant power region
         for gamma_deg in range(1,85):
             gamma = gamma_deg*np.pi/180
-            o = 1/np.sqrt( (self.phi_m - np.sin(gamma))**2 + (self.lpu * np.cos(gamma))**2 )
+            o = 1/np.sqrt( (self.phi_m - np.sin(gamma)*self.lpu)**2 + (self.lpu * np.cos(gamma))**2 )
             t = self.phi_m * np.cos(gamma)
             p = t*o
             self.speed.append(o)
@@ -44,7 +48,17 @@ class spm():
             self.torque.append(t)
             self.power.append(p)
 
-    def plot_profile(self):
+    def motor_profile(self, Vb, Pb, wb):
+        self.Vb = Vb
+        self.Pb = Pb
+        self.wb = wb
+        Tb = Pb/(2*np.pi*wb/60)
+        self.values['speed'] = np.array(self.speed)*wb
+        self.values['torque'] = np.array(self.torque)*Tb
+        self.values['power'] = np.array(self.power)*Pb
+
+
+    def plot_puprofile(self):
         fig, axs = plt.subplots(3)
         fig.set_figheight(8)
         axs[0].plot(self.speed, self.torque)
@@ -61,8 +75,25 @@ class spm():
         plt.tight_layout()
         plt.show()
 
+    def plot_profile(self):
+        fig, axs = plt.subplots(3)
+        fig.set_figheight(8)
+        axs[0].plot(self.values['speed'], self.values['torque'])
+        axs[0].set_title('torque vs speed')
+        axs[1].plot(self.values['speed'], self.values['power'])
+        axs[1].set_title('power vs speed')
+        axs[2].plot(self.values['speed'], self.gamma)
+        axs[2].set_title('gamma vs speed')
+
+        # Hide x labels and tick labels for top plots and y ticks for right plots.
+        for ax in axs.flat:
+            ax.label_outer()
+
+        plt.tight_layout()
+        plt.show()
 
 # Cell
 M1 = spm(0.6)
-M1.motorprofile()
+M1.motor_puprofile()
+M1.motor_profile(42, 7000, 2500)
 M1.plot_profile()
