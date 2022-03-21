@@ -15,6 +15,9 @@ entries:
     - output: web,pdf
       title: pmsm per unit analysis
       url: electricmachinepu.html
+    - output: web,pdf
+      title: Title
+      url: statorresistance.html
     output: web
     title: emdesigner
   output: web

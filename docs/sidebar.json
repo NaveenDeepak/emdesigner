@@ -2,6 +2,7 @@
   "emdesigner": {
     "Overview": "/",
     "place holder": "core.html",
-    "pmsm per unit analysis": "electricmachinepu.html"
+    "pmsm per unit analysis": "electricmachinepu.html",
+    "Title": "statorresistance.html"
   }
 }

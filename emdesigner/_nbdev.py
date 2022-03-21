@@ -7,7 +7,8 @@ index = {"say_hello": "00_core.ipynb",
          "ipm": "01_electricmachinepu.ipynb"}
 
 modules = ["core.py",
-           "electricmachinepu.py"]
+           "electricmachinepu.py",
+           "statorresistance.py"]
 
 doc_url = "https://NaveenDeepak.github.io/emdesigner/"
 
