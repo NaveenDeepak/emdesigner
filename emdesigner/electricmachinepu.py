@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 
 # Cell
 class spm():
-    def __init__(self, lpu):
-        self.lpu = lpu
-        self.phi_m = np.sqrt(1-lpu**2)
+    def __init__(self, phi_m):
+        self.lpu = np.sqrt(1-phi_m**2)
+        self.phi_m = phi_m
         self.Vb = 0
         self.Pb = 0
         self.wb = 0
@@ -30,7 +30,7 @@ class spm():
         gamma = gamma_deg*np.pi/180
         # constant torque region
         for o in np.arange(0,1.1,0.1):
-            v = o * np.sqrt( (self.phi_m - np.sin(gamma))**2 + (self.lpu * np.cos(gamma))**2 )
+            v = o * np.sqrt( (self.phi_m - np.sin(gamma)*self.lpu)**2 + (self.lpu * np.cos(gamma))**2 )
             t = self.phi_m * np.cos(gamma)
             p = t*o
             self.speed.append(o)
@@ -38,7 +38,7 @@ class spm():
             self.gamma.append(gamma)
             self.torque.append(t)
             self.power.append(p)
-        # constant power region
+        # constant voltage region
         for gamma_deg in range(1,85):
             gamma = gamma_deg*np.pi/180
             o = 1/np.sqrt( (self.phi_m - np.sin(gamma)*self.lpu)**2 + (self.lpu * np.cos(gamma))**2 )
