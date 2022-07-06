@@ -1,6 +1,6 @@
 ---
 
-title: Title
+title: rotor
 
 
 keywords: fastai
@@ -38,12 +38,6 @@ nb_path: "03_rotor.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="rotor">rotor<a class="anchor-link" href="#rotor"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>define rotor dimensions and calculate attributes</p>
 </blockquote>
 
@@ -53,34 +47,30 @@ nb_path: "03_rotor.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">rotor</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">Np</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">magnet_pitch_f</span><span class="p">,</span> <span class="n">magnet_thickness_f</span><span class="p">,</span> <span class="nb">len</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">OD</span> <span class="o">=</span> <span class="n">OD</span>                        <span class="c1"># rotor outer diameter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Np</span> <span class="o">=</span> <span class="n">Np</span>                        <span class="c1"># number of poles</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">topology</span> <span class="o">=</span> <span class="s1">&#39;spm&#39;</span>               <span class="c1"># rotor topology</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">g</span>                          <span class="c1"># airgap</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">ID</span>                        <span class="c1"># rotor inner diameter/shaft diameter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mag_pitch_f</span> <span class="o">=</span> <span class="n">magnet_pitch_f</span>   <span class="c1"># magnet pitch as a fraction of one pole angle</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mag_thickness_f</span> <span class="o">=</span> <span class="n">magnet_thickness_f</span> <span class="c1"># magnet thickness as a fraction of radial difference between OD and shaft</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="nb">len</span>                      <span class="c1"># rotor stack/magnet length along the radial direction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">core_area</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">magnet_area</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="rotor" class="doc_header"><code>class</code> <code>rotor</code><a href="https://github.com/NaveenDeepak/emdesigner/tree/master/emdesigner/rotor.py#L10" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>rotor</code>(<strong><code>OD</code></strong>, <strong><code>Np</code></strong>, <strong><code>g</code></strong>, <strong><code>ID</code></strong>, <strong><code>magnet_pitch_f</code></strong>, <strong><code>magnet_thickness_f</code></strong>, <strong><code>len</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
     
-    <span class="k">def</span> <span class="nf">calc_area</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="n">magnet_thickness</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mag_thickness_f</span><span class="o">*</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">OD</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;magnet thickness &#39;</span><span class="p">,</span> <span class="n">magnet_thickness</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">core_area</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#np.pi*0.25*((self.OD - 2*magnet_thickness)**2 - self.ID**2)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">magnet_area</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1">#(np.pi*0.25*(self.OD**2 - self.ID**2) - self.core_area)*self.mag_pitch_f</span>
-        
-</pre></div>
-
-    </div>
-</div>
-</div>
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}

@@ -19,7 +19,7 @@ entries:
       title: stator
       url: stator.html
     - output: web,pdf
-      title: Title
+      title: rotor
       url: rotor.html
     output: web
     title: emdesigner
