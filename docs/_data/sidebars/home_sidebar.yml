@@ -17,7 +17,7 @@ entries:
       url: electricmachinepu.html
     - output: web,pdf
       title: Title
-      url: statorresistance.html
+      url: inductance.html
     output: web
     title: emdesigner
   output: web
