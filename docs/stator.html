@@ -29,13 +29,6 @@ nb_path: "02_stator.ipynb"
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="stator">stator<a class="anchor-link" href="#stator"> </a></h2>
@@ -50,6 +43,13 @@ nb_path: "02_stator.ipynb"
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="slot-resistance">slot resistance<a class="anchor-link" href="#slot-resistance"> </a></h4><p>$R_s = \dfrac{\rho n_s^2 L}{kcp A_s } $
@@ -78,82 +78,30 @@ $\alpha_{cp}$: coil pitch as a fraction of the pole pitch</p>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Stator</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Ns</span><span class="p">,</span> <span class="n">Np</span><span class="p">,</span> <span class="n">w_layers</span><span class="p">,</span> <span class="n">pp</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">id_f</span><span class="p">,</span> <span class="n">bs0_f</span><span class="p">,</span> <span class="n">hs0</span><span class="p">,</span> <span class="n">hs1</span><span class="p">,</span> <span class="n">hs2_f</span><span class="p">,</span> <span class="n">tw_f</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="nb">len</span><span class="p">,</span> <span class="n">turns</span><span class="p">,</span> <span class="n">slot_fill</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Ns</span> <span class="o">=</span> <span class="n">Ns</span>            <span class="c1"># stator slots</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Np</span> <span class="o">=</span> <span class="n">Np</span>            <span class="c1"># rotor poles</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w_layers</span> <span class="o">=</span> <span class="n">w_layers</span>       <span class="c1"># winding layers</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pp</span> <span class="o">=</span> <span class="n">pp</span>             <span class="c1"># parallel paths</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pitch</span> <span class="o">=</span> <span class="n">pitch</span>          <span class="c1"># slot pitch</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">OD</span> <span class="o">=</span> <span class="n">OD</span>           <span class="c1"># stator outer diameter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id_f</span> <span class="o">=</span> <span class="n">id_f</span>         <span class="c1"># stator id fraction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bs0_f</span> <span class="o">=</span> <span class="n">bs0_f</span>        <span class="c1"># slot opening fraction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hs0</span> <span class="o">=</span> <span class="n">hs0</span>            <span class="c1"># shoe height</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hs1</span> <span class="o">=</span> <span class="n">hs1</span>          <span class="c1"># shoe slope height</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hs2_f</span> <span class="o">=</span> <span class="n">hs2_f</span>       <span class="c1"># tooth height fraction</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tw_f</span> <span class="o">=</span> <span class="n">tw_f</span>         <span class="c1"># tooth width as fraction of tooth shoe span</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">r0</span> <span class="o">=</span> <span class="n">r0</span>           <span class="c1"># radius of curvature</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">len</span> <span class="o">=</span> <span class="nb">len</span>           <span class="c1"># stack length</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># check valid geometry</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">turns</span> <span class="o">=</span> <span class="n">turns</span>          <span class="c1"># turns per coil</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">slot_fill</span> <span class="o">=</span> <span class="n">slot_fill</span>    <span class="c1"># copper slot fill factor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">R_st</span> <span class="o">=</span> <span class="mi">0</span>           <span class="c1"># radius of slot top</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">R_sb</span> <span class="o">=</span> <span class="mi">0</span>           <span class="c1"># radius of slot bottom</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">slot_area</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># slot area</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">phase_res</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># phase resistance</span>
-    
-    <span class="k">def</span> <span class="nf">validate_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="sd">&quot;&quot;&quot; Validate the given dimensions</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">valid_val</span> <span class="o">=</span> <span class="mi">0</span>
-    
-    <span class="k">def</span> <span class="nf">slot_resistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<div class="output_wrapper">
+<div class="output">
 
-        <span class="n">slot_pitch_angle</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">Ns</span>
-        <span class="n">tooth_angle</span> <span class="o">=</span> <span class="n">slot_pitch_angle</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">bs0_f</span><span class="p">)</span>
-        <span class="n">tw_angle</span> <span class="o">=</span> <span class="n">tooth_angle</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">tw_f</span>
-        <span class="n">s_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">OD</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">id_f</span>
-        <span class="c1"># calculate tooth width from the angle made with centre</span>
-        <span class="n">tw</span> <span class="o">=</span> <span class="n">s_id</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">tw_angle</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        
-        <span class="c1"># calculate slot bottom radius</span>
-        <span class="n">rsb</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_id</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hs0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hs1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">R_sb</span> <span class="o">=</span> <span class="n">rsb</span>
+<div class="output_area">
 
-        <span class="c1"># calculate slot top radius</span>
-        <span class="n">rst</span> <span class="o">=</span> <span class="n">rsb</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">OD</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">rsb</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">hs2_f</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">R_st</span> <span class="o">=</span> <span class="n">rst</span>
 
-        <span class="n">slot_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">rst</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">rsb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">Ns</span> <span class="o">-</span> <span class="n">tw</span><span class="o">*</span><span class="p">(</span><span class="n">rst</span><span class="o">-</span><span class="n">rsb</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">slot_area</span> <span class="o">=</span> <span class="n">slot_area</span>
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Stator" class="doc_header"><code>class</code> <code>Stator</code><a href="https://github.com/NaveenDeepak/emdesigner/tree/master/emdesigner/stator.py#L10" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Stator</code>(<strong><code>Ns</code></strong>, <strong><code>Np</code></strong>, <strong><code>w_layers</code></strong>, <strong><code>pp</code></strong>, <strong><code>pitch</code></strong>, <strong><code>OD</code></strong>, <strong><code>id_f</code></strong>, <strong><code>bs0_f</code></strong>, <strong><code>hs0</code></strong>, <strong><code>hs1</code></strong>, <strong><code>hs2_f</code></strong>, <strong><code>tw_f</code></strong>, <strong><code>r0</code></strong>, <strong><code>len</code></strong>, <strong><code>turns</code></strong>, <strong><code>slot_fill</code></strong>)</p>
+</blockquote>
 
-        <span class="n">ro_cu</span> <span class="o">=</span> <span class="mf">1.72e-8</span> <span class="c1"># copper coefficient of resistance</span>
+</div>
 
-        <span class="n">r_slot</span> <span class="o">=</span> <span class="mf">1e3</span><span class="o">*</span><span class="n">ro_cu</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">len</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">slot_area</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_fill</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r_slot</span>
+</div>
 
-    
-    <span class="k">def</span> <span class="nf">endwinding_resistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">):</span>
-        <span class="n">a_cp</span> <span class="o">=</span> <span class="mi">1</span>                        <span class="c1"># coil pitch as factor of slots</span>
-        <span class="n">tp</span> <span class="o">=</span> <span class="n">a_cp</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">R_st</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">Ns</span>  <span class="c1"># coil pitch as length</span>
-        <span class="n">ro_cu</span> <span class="o">=</span> <span class="mf">1.72e-8</span>                 <span class="c1"># copper coefficient of resistance </span>
-        <span class="n">r_endwinding</span> <span class="o">=</span> <span class="mf">1e3</span><span class="o">*</span><span class="n">ro_cu</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tp</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_area</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_fill</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r_endwinding</span>
-    
-    <span class="k">def</span> <span class="nf">calc_phase_resistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="n">coils_per_phase</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">w_layers</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Ns</span><span class="o">/</span><span class="mi">3</span>
-        <span class="n">r_coil</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">w_layers</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_resistance</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">endwinding_resistance</span><span class="p">()</span> <span class="p">)</span>  <span class="c1"># coil resistance</span>
-        <span class="n">r_phase</span> <span class="o">=</span> <span class="n">r_coil</span><span class="o">*</span><span class="n">coils_per_phase</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pp</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>                          
-        <span class="bp">self</span><span class="o">.</span><span class="n">phase_res</span> <span class="o">=</span> <span class="n">r_phase</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
