@@ -16,6 +16,9 @@ entries:
       title: pmsm per unit analysis
       url: electricmachinepu.html
     - output: web,pdf
+      title: stator
+      url: stator.html
+    - output: web,pdf
       title: Title
       url: rotor.html
     output: web
