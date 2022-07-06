@@ -55,7 +55,7 @@ nb_path: "03_rotor.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="rotor" class="doc_header"><code>class</code> <code>rotor</code><a href="https://github.com/NaveenDeepak/emdesigner/tree/master/emdesigner/rotor.py#L10" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>rotor</code>(<strong><code>OD</code></strong>, <strong><code>Np</code></strong>, <strong><code>g</code></strong>, <strong><code>ID</code></strong>, <strong><code>magnet_pitch_f</code></strong>, <strong><code>magnet_thickness_f</code></strong>, <strong><code>len</code></strong>)</p>
+<h2 id="Rotor" class="doc_header"><code>class</code> <code>Rotor</code><a href="https://github.com/NaveenDeepak/emdesigner/tree/master/emdesigner/rotor.py#L10" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Rotor</code>(<strong><code>OD</code></strong>, <strong><code>Np</code></strong>, <strong><code>g</code></strong>, <strong><code>ID</code></strong>, <strong><code>magnet_pitch_f</code></strong>, <strong><code>magnet_thickness_f</code></strong>, <strong><code>len</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -88,7 +88,7 @@ nb_path: "03_rotor.ipynb"
 <span class="n">ID</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="n">magnet_pitch_f</span> <span class="o">=</span> <span class="mf">0.83</span>
 <span class="n">magnet_thickness_f</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">OD</span><span class="o">-</span><span class="n">ID</span><span class="p">)</span>
-<span class="n">r1</span> <span class="o">=</span> <span class="n">rotor</span><span class="p">(</span><span class="n">OD</span><span class="p">,</span> <span class="n">Np</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">magnet_pitch_f</span><span class="p">,</span> <span class="n">magnet_thickness_f</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">Rotor</span><span class="p">(</span><span class="n">OD</span><span class="p">,</span> <span class="n">Np</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">magnet_pitch_f</span><span class="p">,</span> <span class="n">magnet_thickness_f</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
 <span class="n">r1</span><span class="o">.</span><span class="n">calc_area</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cross section area of </span><span class="se">\n</span><span class="s1"> core: </span><span class="si">{0:.2f}</span><span class="se">\n</span><span class="s1"> magnet: </span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">core_area</span><span class="p">,</span> <span class="n">r1</span><span class="o">.</span><span class="n">magnet_area</span><span class="p">))</span>

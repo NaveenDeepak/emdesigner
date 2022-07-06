@@ -6,7 +6,7 @@ index = {"say_hello": "00_core.ipynb",
          "spm": "01_electricmachinepu.ipynb",
          "ipm": "01_electricmachinepu.ipynb",
          "stator": "02_stator.ipynb",
-         "rotor": "03_rotor.ipynb"}
+         "Rotor": "03_rotor.ipynb"}
 
 modules = ["core.py",
            "electricmachinepu.py",
