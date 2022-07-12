@@ -6,12 +6,15 @@ index = {"say_hello": "00_core.ipynb",
          "spm": "01_electricmachinepu.ipynb",
          "ipm": "01_electricmachinepu.ipynb",
          "Stator": "02_stator.ipynb",
-         "Rotor": "03_rotor.ipynb"}
+         "Rotor": "03_rotor.ipynb",
+         "transform": "04_dq.ipynb",
+         "inv_transform": "04_dq.ipynb"}
 
 modules = ["core.py",
            "electricmachinepu.py",
            "stator.py",
-           "rotor.py"]
+           "rotor.py",
+           "dq.py"]
 
 doc_url = "https://NaveenDeepak.github.io/emdesigner/"
 

@@ -44,6 +44,20 @@ nb_path: "03_rotor.ipynb"
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OD: rotor outer diameter(including the magnets for spm topology)<br>
+Np: number of poles<br>
+topology: 'spm'<br>
+g: airgap<br>
+ID: rotor inner diameter<br>
+mag_pitch_f: magnet pitch as a fraction of pole angle<br>
+magnet_thickness_f: magnet thickness as a fraction of rotor diameter<br>
+len: active rotor length</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -91,7 +105,7 @@ nb_path: "03_rotor.ipynb"
 <span class="n">r1</span> <span class="o">=</span> <span class="n">Rotor</span><span class="p">(</span><span class="n">OD</span><span class="p">,</span> <span class="n">Np</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">magnet_pitch_f</span><span class="p">,</span> <span class="n">magnet_thickness_f</span><span class="p">,</span> <span class="nb">len</span><span class="p">)</span>
 <span class="n">r1</span><span class="o">.</span><span class="n">calc_area</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cross section area of </span><span class="se">\n</span><span class="s1"> core: </span><span class="si">{0:.2f}</span><span class="se">\n</span><span class="s1"> magnet: </span><span class="si">{0:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">core_area</span><span class="p">,</span> <span class="n">r1</span><span class="o">.</span><span class="n">magnet_area</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cross section area of </span><span class="se">\n</span><span class="s1"> core: </span><span class="si">{0:.2f}</span><span class="se">\n</span><span class="s1"> magnet: </span><span class="si">{1:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">core_area</span><span class="p">,</span> <span class="n">r1</span><span class="o">.</span><span class="n">magnet_area</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -106,8 +120,8 @@ nb_path: "03_rotor.ipynb"
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>magnet thickness  4.0
 Cross section area of 
- core: 10.00
- magnet: 10.00
+ core: 2611.45
+ magnet: 719.68
 </pre>
 </div>
 </div>

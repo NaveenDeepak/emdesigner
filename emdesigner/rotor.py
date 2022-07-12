@@ -17,12 +17,10 @@ class Rotor():
         self.mag_pitch_f = magnet_pitch_f   # magnet pitch as a fraction of one pole angle
         self.mag_thickness_f = magnet_thickness_f # magnet thickness as a fraction of radial difference between OD and shaft
         self.len = len                      # rotor stack/magnet length along the radial direction
-        self.core_area = 0
-        self.magnet_area = 0
 
     def calc_area(self,):
         magnet_thickness = self.mag_thickness_f*0.5*(self.OD - self.ID)
         print('magnet thickness ', magnet_thickness)
-        self.core_area = 10 #np.pi*0.25*((self.OD - 2*magnet_thickness)**2 - self.ID**2)
-        self.magnet_area = 12 #(np.pi*0.25*(self.OD**2 - self.ID**2) - self.core_area)*self.mag_pitch_f
+        self.core_area = np.pi*0.25*((self.OD - 2*magnet_thickness)**2 - self.ID**2)
+        self.magnet_area = (np.pi*0.25*(self.OD**2 - self.ID**2) - self.core_area)*self.mag_pitch_f
 

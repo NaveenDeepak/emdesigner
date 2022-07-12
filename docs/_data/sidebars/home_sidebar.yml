@@ -21,6 +21,9 @@ entries:
     - output: web,pdf
       title: rotor
       url: rotor.html
+    - output: web,pdf
+      title: dq
+      url: dq.html
     output: web
     title: emdesigner
   output: web
