@@ -5,7 +5,7 @@ __all__ = ['transform', 'inv_transform']
 # Cell
 import numpy as np
 import matplotlib.pyplot as plt
-import sympy
+import sympy as sympy
 
 # Cell
 def transform(theta, x):
