@@ -125,8 +125,8 @@ $L_q = (L_0 - M_0) + (\dfrac{L_2}{2} + M_2)$</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-<span class="n">transform</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)]]</span>
+<span class="n">x_dq</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -144,13 +144,15 @@ $L_q = (L_0 - M_0) + (\dfrac{L_2}{2} + M_2)$</p>
  [ 0.         -0.57735027  0.57735027]
  [ 0.33333333  0.33333333  0.33333333]]
 
-abc matrix (shape:(4, 1)): 
+abc matrix (shape:(3, 1)): 
 [[ 1. ]
  [-0.5]
- [-0.5]
- [ 1. ]]
+ [-0.5]]
 
-incompatible input shapes
+tranformed matrix: 
+ [[1.00000000e+00]
+ [0.00000000e+00]
+ [1.66533454e-16]]
 </pre>
 </div>
 </div>
@@ -172,7 +174,7 @@ incompatible input shapes
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="inv_transform" class="doc_header"><code>inv_transform</code><a href="https://github.com/NaveenDeepak/emdesigner/tree/master/emdesigner/dq.py#L34" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>inv_transform</code>(<strong><code>theta</code></strong>, <strong><code>x</code></strong>)</p>
+<h4 id="inv_transform" class="doc_header"><code>inv_transform</code><a href="https://github.com/NaveenDeepak/emdesigner/tree/master/emdesigner/dq.py#L31" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>inv_transform</code>(<strong><code>theta</code></strong>, <strong><code>x</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -258,29 +260,7 @@ tranformed matrix:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">L0</span><span class="p">,</span> <span class="n">L2</span><span class="p">,</span> <span class="n">M0</span><span class="p">,</span> <span class="n">M2</span><span class="p">,</span> <span class="n">ta</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;L0, L2, M0, M2, ta&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Experimental-measurement">Experimental measurement<a class="anchor-link" href="#Experimental-measurement"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">laa</span> <span class="o">=</span> <span class="n">L0</span> <span class="o">+</span> <span class="n">L2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ta</span><span class="p">)</span>
+<span class="n">laa</span> <span class="o">=</span> <span class="n">L0</span> <span class="o">+</span> <span class="n">L2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ta</span><span class="p">)</span>
 <span class="n">lbb</span> <span class="o">=</span> <span class="n">L0</span> <span class="o">+</span> <span class="n">L2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ta</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">lcc</span> <span class="o">=</span> <span class="n">L0</span> <span class="o">+</span> <span class="n">L2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ta</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">lab</span> <span class="o">=</span> <span class="n">M0</span> <span class="o">+</span> <span class="n">M2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ta</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
@@ -295,13 +275,6 @@ tranformed matrix:
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Rotor pole is locked with phase-A axis by passing dc current from A -&gt; B-C(shorted). In this rotor position, direct axis is aligned to phase A axis. Inductance measured between A - B&amp;C(shorted) is given by Lm</p>
-
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -322,12 +295,10 @@ tranformed matrix:
 
 <div class="output_area">
 
-
-
-<div class="output_latex output_subarea output_execute_result">
-$\displaystyle \frac{3 L_{0}}{2} - \frac{L_{2} \sin{\left(2 ta + \frac{\pi}{6} \right)}}{2} + L_{2} \cos{\left(2 ta \right)} - \frac{3 M_{0}}{2} + \frac{M_{2} \sin{\left(2 ta + \frac{\pi}{6} \right)}}{2} + \frac{M_{2} \cos{\left(2 ta \right)}}{2} + \frac{3 M_{2} \cos{\left(2 ta + \frac{\pi}{3} \right)}}{2}$
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3*L0/2 - L2*sin(2*ta + pi/6)/2 + L2*cos(2*ta) - 3*M0/2 + M2*sin(2*ta + pi/6)/2 + M2*cos(2*ta)/2 + 3*M2*cos(2*ta + pi/3)/2
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -351,7 +322,8 @@ $\displaystyle \frac{3 L_{0}}{2} - \frac{L_{2} \sin{\left(2 ta + \frac{\pi}{6} \
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
-<span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">L0</span><span class="o">-</span><span class="n">M0</span><span class="p">)</span> <span class="o">+</span> <span class="n">L2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">M2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Lm_val</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">L0</span><span class="o">-</span><span class="n">M0</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">L2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">M2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">theta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Lm_val</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -363,12 +335,10 @@ $\displaystyle \frac{3 L_{0}}{2} - \frac{L_{2} \sin{\left(2 ta + \frac{\pi}{6} \
 
 <div class="output_area">
 
-
-
-<div class="output_latex output_subarea output_execute_result">
-$\displaystyle 0.75 L_{2} + 1.5 M_{2}$
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3*L0/2 - 0.75*L2 - 3*M0/2 - 1.5*M2
+</pre>
 </div>
-
 </div>
 
 </div>

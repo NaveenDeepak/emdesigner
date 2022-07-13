@@ -27,9 +27,6 @@ def transform(theta, x):
     except:
         print('incompatible input shapes')
 
-
-
-
 # Cell
 def inv_transform(theta, x):
     k1 = np.matrix(((np.cos(theta), np.sin(theta), 1),
@@ -48,4 +45,3 @@ def inv_transform(theta, x):
 
     except:
         print('incompatible input shapes')
-
