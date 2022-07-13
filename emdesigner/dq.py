@@ -5,7 +5,6 @@ __all__ = ['transform', 'inv_transform']
 # Cell
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy
 import sympy
 
 # Cell
