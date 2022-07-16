@@ -8,7 +8,8 @@ index = {"say_hello": "00_core.ipynb",
          "Stator": "02_stator.ipynb",
          "Rotor": "03_rotor.ipynb",
          "transform": "04_dq.ipynb",
-         "inv_transform": "04_dq.ipynb"}
+         "inv_transform": "04_dq.ipynb",
+         "cogging": "05_cogging.ipynb"}
 
 modules = ["core.py",
            "electricmachinepu.py",

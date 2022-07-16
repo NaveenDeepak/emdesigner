@@ -24,6 +24,9 @@ entries:
     - output: web,pdf
       title: dq
       url: dq.html
+    - output: web,pdf
+      title: cogging
+      url: cogging.html
     output: web
     title: emdesigner
   output: web

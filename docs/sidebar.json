@@ -5,6 +5,7 @@
     "pmsm per unit analysis": "electricmachinepu.html",
     "stator": "stator.html",
     "rotor": "rotor.html",
-    "dq": "dq.html"
+    "dq": "dq.html",
+    "cogging": "cogging.html"
   }
 }
