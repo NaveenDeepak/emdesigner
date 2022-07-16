@@ -15,7 +15,8 @@ modules = ["core.py",
            "electricmachinepu.py",
            "stator.py",
            "rotor.py",
-           "dq.py"]
+           "dq.py",
+           "cogging.py"]
 
 doc_url = "https://NaveenDeepak.github.io/emdesigner/"
 
