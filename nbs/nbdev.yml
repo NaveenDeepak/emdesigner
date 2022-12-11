@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "emdesigner"
+  site-url: "https://NaveenDeepak.github.io/emdesigner"
+  description: "tool for electric machine analysis and design"
+  repo-branch: main
+  repo-url: "https://github.com/NaveenDeepak/emdesigner"
