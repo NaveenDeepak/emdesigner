@@ -7,8 +7,9 @@ __all__ = ['spm', 'ipm']
 import numpy as np
 import matplotlib.pyplot as plt
 from IPython import display
+from PIL import Image
 
-# %% ../nbs/01_pu_pmsm.ipynb 7
+# %% ../nbs/01_pu_pmsm.ipynb 8
 class spm():
     def __init__(self, phi_m):
         self.lpu = np.sqrt(1-phi_m**2)
@@ -101,7 +102,7 @@ class spm():
         plt.tight_layout()
         plt.show()
 
-# %% ../nbs/01_pu_pmsm.ipynb 19
+# %% ../nbs/01_pu_pmsm.ipynb 20
 #export
 class ipm():
     def __init__(self, phi_m, ld):
