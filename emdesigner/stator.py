@@ -23,7 +23,10 @@ class stator:
         self.windinglayers = 0
         self.coilpitch = 0
         self.turns = 0
+        self.strands = 0
+        self.strand_dia = 0
         self.parallelpaths = 0
+        self.steel_grade = 0
         self.valid = False
         self.dims = {}
     
