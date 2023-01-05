@@ -9,7 +9,7 @@ from PIL import Image
 
 # %% ../nbs/06_pmsm.ipynb 7
 class pmsm(stator, rotor):
-    def __init__(self, s = stator, r = rotor):
+    def __init__(self, s = stator(), r = rotor()):
         self.stator = s
         self.rotor = r
         self.airgap = 0
