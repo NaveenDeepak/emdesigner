@@ -6,8 +6,10 @@ __all__ = ['pmsm']
 # %% ../nbs/06_pmsm.ipynb 4
 import numpy as np
 from PIL import Image
+from .stator import stator
+from .rotor import rotor
 
-# %% ../nbs/06_pmsm.ipynb 7
+# %% ../nbs/06_pmsm.ipynb 6
 class pmsm(stator, rotor):
     def __init__(self, s = stator(), r = rotor()):
         self.stator = s
