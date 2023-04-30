@@ -5,6 +5,7 @@ __all__ = ['end_turn']
 
 # %% ../nbs/07_inductance.ipynb 3
 import numpy as np
+from . import stator, rotor
 
 # %% ../nbs/07_inductance.ipynb 8
 def end_turn(motor_data):
