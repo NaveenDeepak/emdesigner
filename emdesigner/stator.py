@@ -28,7 +28,7 @@ class stator:
         self.parallelpaths = 0
         self.steel_grade = 0
         self.valid = False
-        self.dims = {}
+        self.params = 0
     
     def valid_design(self):
 
@@ -42,6 +42,7 @@ class stator:
             print('Invalid stator outer diameter')
             return 0
         
+        self.calculate_parameters()
         self.valid = True
     
     def calculate_parameters(self):
@@ -58,24 +59,20 @@ class stator:
         wtb = 2*Rsi*np.sin(th_s*self.slotopening_fraction*self.toothwidth_fraction/2)
         wsi = (Rsi + d1 + d2) - wtb
         wsb = (Rsi + d1 + d2 + d3) - wtb
-        As = (th_s*(Rsi + d1 + d2 + d3/2 ) - wtb)*d3/2
+        As = (th_s*(Rsi + d1 + d2 + d3/2) - wtb)*d3/2
 
-        # needs rotor information
-        g = 1
-        th_p = np.pi*2/self.poles
-        Nspp = self.slots/(3*self.poles)
-        a_cp = int(Nspp)/Nspp
-        t_p = Rsi*th_p
-        t_s = Rsi*th_s
-        t_c = a_cp*t_p
-        th_se = np.pi/(self.slots/self.poles)
-        kd = np.sin(Nspp*th_se/2)/(Nspp*np.sin(th_se/2))
-        lm = 4
-        a_m = 0.83
-        c_phi = 2*a_m/(1+a_m)
-        gc = lm/(g*c_phi)
-        kc_1 = (t_s/ws)*(5*gc/ws + 1)
-        kc = 1/(1 - 1/kc_1)        
+        self.params = {'Rso': Rso,
+                        'Rsi': Rsi,
+                        'd1': d1,
+                        'd2': d2,
+                        'wbi': wbi,
+                        'd3': d3,
+                        'th_s': th_s,
+                        'ws': ws,
+                        'wtb': wtb,
+                        'wsi': wsi,
+                        'wsb': wsb,
+                        'As': As}
 
     
     def calculate_inductance(self):

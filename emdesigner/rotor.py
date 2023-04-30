@@ -19,7 +19,7 @@ class rotor:
         self.magnetgrade = 0
         self.steel_grade = 0
         self.valid = False
-        self.dims = {}
+        self.params = 0
     
     def valid_design(self):
 
@@ -33,6 +33,8 @@ class rotor:
             print('Invalid rotor outer diameter')
             return 0
         
+        self.calculate_parameters()
+
         self.valid = True
     
     def calculate_parameters(self):
@@ -42,6 +44,12 @@ class rotor:
         Rri = Rro*self.innerdiameter_fraction
         lm = (Rro - Rri)*self.magnetthickness_fraction
         a_m = self.poleembrace
-        Am = np.pi(Rro**2 - Rri**2)*self.poleembrace
+        Am = np.pi*(Rro**2 - Rri**2)*self.poleembrace
         th_p = np.pi*2/self.poles
+        self.params = {'Rro': Rro,
+                        'Rri': Rri,
+                        'lm': lm,
+                        'a_m': a_m,
+                        'Am': Am,
+                        'th_p': th_p}    
 

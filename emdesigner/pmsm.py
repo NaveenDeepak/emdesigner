@@ -9,20 +9,73 @@ from PIL import Image
 from .stator import stator
 from .rotor import rotor
 
-# %% ../nbs/06_pmsm.ipynb 6
+# %% ../nbs/06_pmsm.ipynb 7
 class pmsm(stator, rotor):
     def __init__(self, s = stator(), r = rotor()):
         self.stator = s
         self.rotor = r
         self.airgap = 0
+        self.coilpitch = 1
+        self.parallelpaths = 1
         self.valid = False
+        self.params = 0
     
     def valid_design(self):
         if self.airgap <= 0:
             print('motor airgap cannot be negative or zero')
             return 0
         
+        if self.coilpitch < 1:
+            print('winding coil pitch cannot be smaller than 1 slots')
+            return 0
+        
+        if self.parallelpaths < 1 or np.lcm(self.stator.slots, self.rotor.poles)%self.parallelpaths != 0:
+            print('Invalid parallel paths for the slots-poles combination')
+            return 0 
+        
+        # check validity of stator
+        self.stator.valid_design()
+        if self.stator.valid == False:
+            print('stator validation pending')
+            return 0
+
+        # check validity of rotor
+        self.rotor.valid_design()
+        if self.rotor.valid == False:
+            print('rotor validation pending')
+            return 0
+
+        # calculate motor parameters
+        self.calculate_parameters()
         self.valid = True
+
+
+    def calculate_parameters(self):
+        """calculate parameters requied for calculation of motor properties
+        """
+        Nspp = self.stator.slots/(3*self.rotor.poles)
         
-        
+        # a_cp is modified to accommodate fractional slot concentrated winding
+        a_cp = int(Nspp)/Nspp
+        t_p = self.stator.params['Rsi']*self.rotor.params['th_p']
+        t_s = self.stator.params['Rsi']*self.stator.params['th_s']
+        t_c = self.stator.params['Rsi']*2*np.pi*self.coilpitch/self.stator.slots
+        th_se = self.stator.params['th_s']*self.rotor.poles/2
+        kd = np.sin(Nspp*th_se/2)/(Nspp*np.sin(th_se/2))
+        a_m = self.rotor.poleembrace
+        c_phi = 2*a_m/(1+a_m)
+        gc = self.rotor.params['lm']/(self.airgap*c_phi)
+        kc_1 = (t_s/self.stator.params['ws'])*(5*gc/self.stator.params['ws'] + 1)
+        kc = 1/(1 - 1/kc_1)
+
+        self.params = {'Nspp': Nspp,
+                        'a_cp': a_cp,
+                        't_p': t_p,
+                        't_s': t_s,
+                        't_c': t_c,
+                        'th_se':th_se,
+                        'kd': kd,
+                        'c_phi': c_phi,
+                        'gc': gc,
+                        'kc':kc}
 
