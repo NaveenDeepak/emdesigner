@@ -126,16 +126,20 @@ class ipm():
     def calc_sal(self):
         """ calculate valid saliency ratio for given combination of magnet flux linkage and inductance
         """
-        for eta in np.arange(1.1, 20, 0.1):
+        for eta in np.arange(1.01, 20, 0.01):
             gamma = np.arcsin((-self.phi_m + np.sqrt( (self.phi_m**2 + 8*(self.ld*(self.sal-1))**2 )))/(4*self.ld*(self.sal-1)))
             volt = np.sqrt( (self.phi_m - self.ld*np.sin(gamma))**2 + (eta*self.ld * np.cos(gamma))**2 )
-            if eta == 1.1 and volt > 1.05:
+            if eta == 1.01 and volt > 1.05:
                 self.valid = 0
                 return
             if abs(volt-1) <= 0.05:
-                self.sal = round(eta,1)
+                self.sal = round(eta,2)
                 break
-            self.sal = round(eta,1)
+            self.sal = round(eta,2)
+        # print the values of saliency
+        print('gamma = ', gamma*180/np.pi)
+        print('voltage = ', volt)
+        print('sal = ', self.sal)
     
     def validate(self,):
         """ validate the input machine parameter combinations
