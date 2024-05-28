@@ -106,13 +106,13 @@ class spm():
 #export
 class ipm():
     def __init__(self, phi_m, ld):
-        self.phi_m = phi_m
-        self.sal = 0
-        self.ld = ld
-        self.Vb = 0
-        self.Ib = 0
-        self.Pb = 0
-        self.wb = 0
+        self.phi_m = phi_m # per unit values of magnet flux linkage
+        self.sal = 0 # saliency ratio Lq/Ld
+        self.ld = ld # per unit value of Ld
+        self.Vb = 0 # base value of voltage
+        self.Ib = 0 # base value of line current
+        self.Pb = 0 # base value of the power (VA rating)
+        self.wb = 0 # base value of the speed (rpm)
         self.speed = []
         self.torque = []
         self.voltage = []
@@ -126,14 +126,16 @@ class ipm():
     def calc_sal(self):
         """ calculate valid saliency ratio for given combination of magnet flux linkage and inductance
         """
-        for eta in np.arange(1.01, 20, 0.01):
-            gamma = np.arcsin((-self.phi_m + np.sqrt( (self.phi_m**2 + 8*(self.ld*(self.sal-1))**2 )))/(4*self.ld*(self.sal-1)))
+        for eta in np.arange(1.01, 10, 0.001):
+            gamma = np.arcsin((-self.phi_m + np.sqrt( (self.phi_m**2 + 8*(self.ld*(eta-1))**2 )))/(4*self.ld*(eta-1)))
             volt = np.sqrt( (self.phi_m - self.ld*np.sin(gamma))**2 + (eta*self.ld * np.cos(gamma))**2 )
             if eta == 1.01 and volt > 1.05:
                 self.valid = 0
+                print('invalid input parameters combinations')
                 return
             if abs(volt-1) <= 0.05:
                 self.sal = round(eta,2)
+                self.valid = 1
                 break
             self.sal = round(eta,2)
         # print the values of saliency
@@ -193,13 +195,23 @@ class ipm():
         self.torque = torque_temp
         self.power = power_temp
     
-    def motor_profile(self, Vb, Pb, wb):
+    def motor_profile(self, Vb, Pb, wb, pp = 4):
         """This method takes Vb, Pb, wb as the base values for line voltage, KVA rating of the machine, base speed respectively
         """
         self.Vb = Vb
         self.Pb = Pb
         self.wb = wb
         self.Ib = round((Pb*2/(3*Vb))*np.sqrt(3/2),2)
+        
+        print('calculating machine parameters for pole pairs: {}'.format(pp))
+        phi_b = Vb*60/(wb*2*np.pi*pp*1.732) # calculating base flux linkage
+        L_b = phi_b/self.Ib # calculating base inductance
+        self.real_parameters = {'phi_m': self.phi_m*phi_b,
+                                'Ld': self.ld*L_b,
+                                'Lq': self.ld*self.sal*L_b,
+                                'pp':pp}
+        print('machine parameters: \n', self.real_parameters)
+
         Tb = Pb/(2*np.pi*wb/60)
         self.values['speed'] = np.array(self.speed)*wb
         self.values['torque'] = np.array(self.torque)*Tb
