@@ -1,0 +1,162 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "emdesigner",
+    "section": "",
+    "text": "not yet hosted. Please copy repo to use",
+    "crumbs": [
+      "emdesigner"
+    ]
+  },
+  {
+    "objectID": "index.html#installation-and-use",
+    "href": "index.html#installation-and-use",
+    "title": "emdesigner",
+    "section": "",
+    "text": "not yet hosted. Please copy repo to use",
+    "crumbs": [
+      "emdesigner"
+    ]
+  },
+  {
+    "objectID": "inductance.html",
+    "href": "inductance.html",
+    "title": "inductance",
+    "section": "",
+    "text": "\\(L_{ph} = N_{sp} (L_g + L_s + L_e)\\)\n\n\n\\(L_e = \\dfrac{n_s^2 \\mu_0 \\tau_c}{8}  \\ln{\\Big( \\dfrac{\\tau_c^2 \\pi}{4 A_s} \\Big)}\\)\n\n\n\n\\(L_s = n_s^2 \\Big[ \\dfrac{\\mu_0 d_3^2 L}{3 A_s} + \\dfrac{2 \\mu_0 d_2 L}{w_s + w_{si}} + \\dfrac{\\mu_0 d_1 L}{w_s} \\Big]\\)\n\n\n\n\\(L_g = \\dfrac{n_s^2 \\mu_R \\mu_0 L \\tau_c k_d}{4(l_m + \\mu_R k_c g)}\\)\n\nsource\n\n\n\n\n end_turn (motor_data)\n\n\nsource\n\n\n\n\n airgap_inductance (motor_data)\n\n\nsource\n\n\n\n\n stator_leakage_inductance (motor_data)\n\n\ndef inductance(motor):\n    \"\"\"This function is defined to calculate winding inductance\n    \"\"\"\n    if motor.valid:\n            print('yet to be included')\n    else:\n        print('stator is invalid. please provide valid design using the valid_design() method')",
+    "crumbs": [
+      "inductance"
+    ]
+  },
+  {
+    "objectID": "inductance.html#phase-inductance",
+    "href": "inductance.html#phase-inductance",
+    "title": "inductance",
+    "section": "",
+    "text": "\\(L_{ph} = N_{sp} (L_g + L_s + L_e)\\)\n\n\n\\(L_e = \\dfrac{n_s^2 \\mu_0 \\tau_c}{8}  \\ln{\\Big( \\dfrac{\\tau_c^2 \\pi}{4 A_s} \\Big)}\\)\n\n\n\n\\(L_s = n_s^2 \\Big[ \\dfrac{\\mu_0 d_3^2 L}{3 A_s} + \\dfrac{2 \\mu_0 d_2 L}{w_s + w_{si}} + \\dfrac{\\mu_0 d_1 L}{w_s} \\Big]\\)\n\n\n\n\\(L_g = \\dfrac{n_s^2 \\mu_R \\mu_0 L \\tau_c k_d}{4(l_m + \\mu_R k_c g)}\\)\n\nsource\n\n\n\n\n end_turn (motor_data)\n\n\nsource\n\n\n\n\n airgap_inductance (motor_data)\n\n\nsource\n\n\n\n\n stator_leakage_inductance (motor_data)\n\n\ndef inductance(motor):\n    \"\"\"This function is defined to calculate winding inductance\n    \"\"\"\n    if motor.valid:\n            print('yet to be included')\n    else:\n        print('stator is invalid. please provide valid design using the valid_design() method')",
+    "crumbs": [
+      "inductance"
+    ]
+  },
+  {
+    "objectID": "stator.html",
+    "href": "stator.html",
+    "title": "stator",
+    "section": "",
+    "text": "slots\nouter diameter\ninner diameter fraction\nslot opening fraction\nshoe height fraction\ntooth width fraction\nback iron fraction\nstack length\nwinding layers\ncoil pitch\nturns per coil\nparallel paths\n\n\n\n\n\n\n\n\n\n\n\nsource\n\n\n\n stator ()\n\nInitialize self. See help(type(self)) for accurate signature.\n\nsource\n\n\n\n\n stator.calculate_parameters ()\n\ncalculate dimensions requied for calculation of stator properties\n\n\n\n\ns1 = stator()\ns1.valid_design()\n\nInvalid stator outer diameter\n\n\n0\n\n\n\ns1 = stator()\ns1.slots = 12\ns1.poles = 10\ns1.outerdiameter = 125\ns1.innerdiameter_fraction = 75/125\ns1.slotopening_fraction = 0.3\ns1.shoeheight_fraction = 0.1\ns1.toothwidth_fraction = 0.5\ns1.backiron_fraction = 0.3\ns1.stacklength = 60\ns1.windinglayers = 2\ns1.coilpitch = 1\ns1.turns = 11\ns1.strands = 1\ns1.strand_dia = 2\ns1.parallelpaths = 2\ns1.steel_grade = '50C470'\n\n\ns1.valid_design()\nprint(s1.valid)\n\nTrue\n\n\n\ns1.params\n\n{'Rso': 62.5,\n 'Rsi': 37.5,\n 'd1': 2.5,\n 'd2': 2.5,\n 'wbi': 6.0,\n 'd3': 14.0,\n 'th_s': 0.5235987755982988,\n 'ws': 5.884432179588369,\n 'wtb': 2.944486181930145,\n 'wsi': 39.555513818069855,\n 'wsb': 53.555513818069855,\n 'As': 160.8155724712995}\n\n\n\ns1.params['Rso']\n\n62.5",
+    "crumbs": [
+      "stator"
+    ]
+  },
+  {
+    "objectID": "stator.html#stator-class-is-defined-by-the-following-parameters",
+    "href": "stator.html#stator-class-is-defined-by-the-following-parameters",
+    "title": "stator",
+    "section": "",
+    "text": "slots\nouter diameter\ninner diameter fraction\nslot opening fraction\nshoe height fraction\ntooth width fraction\nback iron fraction\nstack length\nwinding layers\ncoil pitch\nturns per coil\nparallel paths\n\n\n\n\n\n\n\n\n\n\n\nsource\n\n\n\n stator ()\n\nInitialize self. See help(type(self)) for accurate signature.\n\nsource\n\n\n\n\n stator.calculate_parameters ()\n\ncalculate dimensions requied for calculation of stator properties\n\n\n\n\ns1 = stator()\ns1.valid_design()\n\nInvalid stator outer diameter\n\n\n0\n\n\n\ns1 = stator()\ns1.slots = 12\ns1.poles = 10\ns1.outerdiameter = 125\ns1.innerdiameter_fraction = 75/125\ns1.slotopening_fraction = 0.3\ns1.shoeheight_fraction = 0.1\ns1.toothwidth_fraction = 0.5\ns1.backiron_fraction = 0.3\ns1.stacklength = 60\ns1.windinglayers = 2\ns1.coilpitch = 1\ns1.turns = 11\ns1.strands = 1\ns1.strand_dia = 2\ns1.parallelpaths = 2\ns1.steel_grade = '50C470'\n\n\ns1.valid_design()\nprint(s1.valid)\n\nTrue\n\n\n\ns1.params\n\n{'Rso': 62.5,\n 'Rsi': 37.5,\n 'd1': 2.5,\n 'd2': 2.5,\n 'wbi': 6.0,\n 'd3': 14.0,\n 'th_s': 0.5235987755982988,\n 'ws': 5.884432179588369,\n 'wtb': 2.944486181930145,\n 'wsi': 39.555513818069855,\n 'wsb': 53.555513818069855,\n 'As': 160.8155724712995}\n\n\n\ns1.params['Rso']\n\n62.5",
+    "crumbs": [
+      "stator"
+    ]
+  },
+  {
+    "objectID": "pu_pmsm.html",
+    "href": "pu_pmsm.html",
+    "title": "pu_pmsm",
+    "section": "",
+    "text": "Ideal PMSM model in p.u ignoring resistance\n\\(V = \\omega \\sqrt{ (\\lambda_m + L_d i_d )^2 + (L_q i_q )^2 }\\)\n\\(T = \\dfrac{3 p}{2} [\\lambda_m i_q - (L_q - L_d)i_q i_d]\\)\n\\(i_d = -I \\sin(\\gamma)\\)\n\\(i_q = I \\cos(\\gamma)\\)\n\\(\\lambda_m = K_e\\)\n\\(\\gamma = \\theta_i\\)\n\\(\\delta = \\theta_v\\)",
+    "crumbs": [
+      "pu_pmsm"
+    ]
+  },
+  {
+    "objectID": "pu_pmsm.html#ipm-class-use-example",
+    "href": "pu_pmsm.html#ipm-class-use-example",
+    "title": "pu_pmsm",
+    "section": "IPM class use: example",
+    "text": "IPM class use: example\nMachine profile with:\nmagnet flux linkage = 0.8 p.u\nsaliency = 2\nLd = 0.3 p.u\nline-line base voltage = 42 V\nbase power value (available KVA) = 7000 W\nbase speed = 2500 rpm\n\n# create an object of the IPM class\nM2 = ipm(0.8, 0.5)\n\n# calculate a valid saliency ratio\nM2.calc_sal()\n\n# check if the input parameters are valid\nprint(\"machine parameters validity: {}\".format(M2.valid))\nprint(\"suggested machine saliency: {}\".format(M2.sal))\n\ngamma =  7.297141854493766\nvoltage =  0.9500216228665731\nsal =  1.21\nmachine parameters validity: 1\nsuggested machine saliency: 1.21\n\n\n\nM2.motor_puprofile()\nM2.plot_puprofile()\n\n\n\n\n\n\n\n\n\nM2.motor_profile(42, 10000, 3500)\nprint('base current: {} A rms'.format(M2.Ib))\nprint('max torque: {} N.m'.format(round(max(M2.values['torque']),2)))\nM2.plot_profile()\n\ncalculating machine parameters for pole pairs: 4\nmachine parameters: \n {'phi_m': 0.013232281642744188, 'Ld': 4.2542057750592164e-05, 'Lq': 5.1475889878216516e-05, 'pp': 4}\nbase current: 194.4 A rms\nmax torque: 22.01 N.m",
+    "crumbs": [
+      "pu_pmsm"
+    ]
+  },
+  {
+    "objectID": "pmsm.html",
+    "href": "pmsm.html",
+    "title": "PMSM",
+    "section": "",
+    "text": "stator class\nrotor class\nradial airgap\n\n\n0%3\n\n0\n\n\n\nsource",
+    "crumbs": [
+      "PMSM"
+    ]
+  },
+  {
+    "objectID": "pmsm.html#test-examples",
+    "href": "pmsm.html#test-examples",
+    "title": "PMSM",
+    "section": "test examples",
+    "text": "test examples\ndefine stator and rotor classes with corresponding values\n\ns1 = stator()\ns1.slots = 12\ns1.poles = 10\ns1.outerdiameter = 125\ns1.innerdiameter_fraction = 75/125\ns1.slotopening_fraction = 0.3\ns1.shoeheight_fraction = 0.1\ns1.toothwidth_fraction = 0.5\ns1.backiron_fraction = 0.3\ns1.stacklength = 60\ns1.windinglayers = 2\ns1.coilpitch = 1\ns1.turns = 11\ns1.strands = 1\ns1.strand_dia = 2\ns1.parallelpaths = 2\ns1.steel_grade = '50C470'\n\n\ns1.params\n\n0\n\n\n\ns1.valid\n\nFalse\n\n\n\nr1 = rotor()\nr1.poles = 10\nr1.outerdiameter = 73\nr1.innerdiameter_fraction = 25/73\nr1.poleembrace = 0.83\nr1.magnetthickness_fraction = 2*4/(73 - 25)\nr1.stacklength = 60\nr1.magnetgrade = 'N30'\nr1.steel_grade = '50C470'\n\n\nr1.params\n\n0\n\n\n\nexample 1:\ncreate an instance of motor class using predefined stator and rotor classes\n\nm1 = pmsm(s1,r1)\n\n\nm1.rotor.outerdiameter\n\n73\n\n\n\n\nexample 2:\ncreate an instance of motor class without any inputs. Assign a pre-existing stator and rotor class instances to the defined motor class instance\n\nm2 = pmsm()\n\n\nm2.rotor = r1\nm2.stator = s1\n\n\nm2.rotor.outerdiameter\n\n73\n\n\n\n\nexample 3:\ncreate an instance of motor class without any inputs. Assign stator and rotor values to the instance\n\nm3 = pmsm()\n\n\nm3.rotor.outerdiameter = 73\n\n\nm3.rotor.outerdiameter\n\n73",
+    "crumbs": [
+      "PMSM"
+    ]
+  },
+  {
+    "objectID": "pmsm.html#test-examples-for-parameters-calculation",
+    "href": "pmsm.html#test-examples-for-parameters-calculation",
+    "title": "PMSM",
+    "section": "test examples for parameters calculation",
+    "text": "test examples for parameters calculation\n\n#m1.stator.valid_design()\n#m1.rotor.valid_design()\n\n\nm1.airgap = 1\nprint(m1.stator.valid)\n\nFalse\n\n\n\nm1.valid_design()\n\n\nm1.stator.params\n\n{'Rso': 62.5,\n 'Rsi': 37.5,\n 'd1': 2.5,\n 'd2': 2.5,\n 'wbi': 6.0,\n 'd3': 14.0,\n 'th_s': 0.5235987755982988,\n 'ws': 5.884432179588369,\n 'wtb': 2.944486181930145,\n 'wsi': 39.555513818069855,\n 'wsb': 53.555513818069855,\n 'As': 160.8155724712995}\n\n\n\nm1.rotor.params\n\n{'Rro': 36.5,\n 'Rri': 12.5,\n 'lm': 4.0,\n 'a_m': 0.83,\n 'Am': 3066.445757315925,\n 'th_p': 0.6283185307179586}\n\n\n\nm1.params\n\n{'Nspp': 0.4,\n 'a_cp': 0.0,\n 't_p': 23.561944901923447,\n 't_s': 19.634954084936204,\n 't_c': 19.634954084936208,\n 'th_se': 2.6179938779914944,\n 'kd': 1.2940952255126037,\n 'c_phi': 0.9071038251366119,\n 'gc': 4.409638554216868,\n 'kc': 1.0673891978270886}\n\n\n\n12/(3*10)\n\n0.8\n\n\n\nthe = np.pi*10/(12)\n\n\nnp.sin(0.8*the/2)/(0.8*np.sin(the/2))\n\n1.1207193402100668",
+    "crumbs": [
+      "PMSM"
+    ]
+  },
+  {
+    "objectID": "cogging.html",
+    "href": "cogging.html",
+    "title": "cogging",
+    "section": "",
+    "text": "Ns: number of stator slots\nNp: number of rotor poles\nNc: LCM(Ns, Np)\n\noptimum pole embrace: \\(j\\dfrac{N_p}{N_c} ; j \\in Z\\)\n\nsource\n\n\n\n spm_embrace (s, r)\n\nThis function calculates pole embrace with minimum cogging torque in SPM motor with ‘s’ slots and ‘r’ poles\n\n\n\n\nmin_cogging = spm_embrace(12,10)\nprint('list of pole embrace for min cogging torque: ', min_cogging)\n\nlist of pole embrace for min cogging torque:  [0.167, 0.333, 0.5, 0.667, 0.833, 1.0]",
+    "crumbs": [
+      "cogging"
+    ]
+  },
+  {
+    "objectID": "cogging.html#theory-pole-embrace-for-minimum-cogging-torque-is-calculated-as",
+    "href": "cogging.html#theory-pole-embrace-for-minimum-cogging-torque-is-calculated-as",
+    "title": "cogging",
+    "section": "",
+    "text": "Ns: number of stator slots\nNp: number of rotor poles\nNc: LCM(Ns, Np)\n\noptimum pole embrace: \\(j\\dfrac{N_p}{N_c} ; j \\in Z\\)\n\nsource\n\n\n\n spm_embrace (s, r)\n\nThis function calculates pole embrace with minimum cogging torque in SPM motor with ‘s’ slots and ‘r’ poles\n\n\n\n\nmin_cogging = spm_embrace(12,10)\nprint('list of pole embrace for min cogging torque: ', min_cogging)\n\nlist of pole embrace for min cogging torque:  [0.167, 0.333, 0.5, 0.667, 0.833, 1.0]",
+    "crumbs": [
+      "cogging"
+    ]
+  },
+  {
+    "objectID": "dq.html#l_dq0-measurements",
+    "href": "dq.html#l_dq0-measurements",
+    "title": "dq",
+    "section": "\\(L_{dq0}\\) measurements",
+    "text": "\\(L_{dq0}\\) measurements\n\\(L_d, L_q\\) can be measured in practice by locking the direct axis of rotor to one of the phases. Example:\n\nL0, L2, M0, M2, ta = sympy.symbols('L0, L2, M0, M2, ta')\nlaa = L0 + L2*sympy.cos(2*ta)\nlbb = L0 + L2*sympy.cos(2*ta + 2*sympy.pi/3)\nlcc = L0 + L2*sympy.cos(2*ta - 2*sympy.pi/3)\nlab = M0 + M2*sympy.cos(2*ta -2*sympy.pi/3)\nlbc = M0 + M2*sympy.cos(2*ta)\nlca = M0 + M2*sympy.cos(2*ta +2*sympy.pi/3)\n\n\nProcedure 1 for measuring \\(L_d, L_q\\)\n\nshort the terminals B-C\npass dc current in through phase-A and out of shorted terminals of phase-B/C\npass sufficient current to ensure that rotor moves and locks to phase A\nAfter the rotor locks itself to phase-A. Stop applying DC current and remove the connections to current source. With phase B and C still connected, measure inductance \\(L_m\\) across phase-A and shorted phase-B/C terminal\n\nThe measured inductance is given as\n\nLm = laa + lbb/2 -lab*3/2 - lca/2 + lbc/2\nLm\n\n\\(\\displaystyle \\frac{3 L_{0}}{2} - \\frac{L_{2} \\sin{\\left(2 ta + \\frac{\\pi}{6} \\right)}}{2} + L_{2} \\cos{\\left(2 ta \\right)} - \\frac{3 M_{0}}{2} + \\frac{M_{2} \\sin{\\left(2 ta + \\frac{\\pi}{6} \\right)}}{2} + \\frac{M_{2} \\cos{\\left(2 ta \\right)}}{2} + \\frac{3 M_{2} \\cos{\\left(2 ta + \\frac{\\pi}{3} \\right)}}{2}\\)\n\n\nAccording to the expressions for inductance. rotor position \\(ta\\) is 90 degrees when the direct axis is aligned to Phase A. Substituting the same, expression of measured inductance is calculated as 3/2 times the Ld value.\n\nLm.evalf(subs={ta: np.pi/2})\n\n\\(\\displaystyle 1.5 L_{0} - 0.75 L_{2} - 1.5 M_{0} - 1.5 M_{2}\\)\n\n\nAbove expression is \\(\\dfrac{3}{2}L_d\\), providing experimental values for \\(L_d\\).\nIn this rotor position, inductance (\\(L_m\\)) measured between phase B and phase C is\n\nlm = lbb + lcc - 2*lbc\nlm\n\n\\(\\displaystyle 2 L_{0} - L_{2} \\sin{\\left(2 ta + \\frac{\\pi}{6} \\right)} - L_{2} \\cos{\\left(2 ta + \\frac{\\pi}{3} \\right)} - 2 M_{0} - 2 M_{2} \\cos{\\left(2 ta \\right)}\\)\n\n\nSubstituting the same rotor position angle for \\(ta\\) shows that the measured values is twice the Lq inductance\n\nlm.evalf(subs={ta: np.pi/2})\n\n\\(\\displaystyle 2.0 L_{0} + 1.0 L_{2} - 2.0 M_{0} + 2.0 M_{2}\\)\n\n\nAbove expression is \\(2L_q\\), providing experimental value for \\(L_q\\)\n\n\nProcedure 2 for measuring \\(L_d, L_q\\)\n\nPass dc current through any two terminals. Example: phase-B (+ve) and phase-C (-ve)\nPass sufficient current to ensure that rotor moves and locks to a fixed position\nAfter the rotor locks itself. Remove DC current and measure inductance \\(L_m\\) across phase-B and phase-C\n\n\nInductance measurement between B and C\n\nlm = lbb + lcc - 2*lbc\nlm\n\n\\(\\displaystyle 2 L_{0} - L_{2} \\sin{\\left(2 ta + \\frac{\\pi}{6} \\right)} - L_{2} \\cos{\\left(2 ta + \\frac{\\pi}{3} \\right)} - 2 M_{0} - 2 M_{2} \\cos{\\left(2 ta \\right)}\\)\n\n\nIn the above example, the rotor q-axis aligns with phase-A axis. The rotor position \\(ta\\) is 0 degrees.\nsubstituting the same for calculating \\(L_m\\)\n\nlm.evalf(subs={ta: 0})\n\n\\(\\displaystyle 2.0 L_{0} - L_{2} - 2.0 M_{0} - 2.0 M_{2}\\)\n\n\nabove expression is \\(2L_d\\), providing an experimental value for \\(L_d\\)\n\n\nInductance measurement between A and B or A and C does not provide other useful information\n\n# measurement between a and b\nlm = laa + lbb - 2*lab\nlm\n\n\\(\\displaystyle 2 L_{0} - L_{2} \\sin{\\left(2 ta + \\frac{\\pi}{6} \\right)} + L_{2} \\cos{\\left(2 ta \\right)} - 2 M_{0} + 2 M_{2} \\cos{\\left(2 ta + \\frac{\\pi}{3} \\right)}\\)\n\n\n\nlm.evalf(subs={ta: 0})\n\n\\(\\displaystyle 2.0 L_{0} + 0.5 L_{2} - 2.0 M_{0} + M_{2}\\)\n\n\n\n# measurement between a and c\nlm = laa + lcc - 2*lca\nlm\n\n\\(\\displaystyle 2 L_{0} + L_{2} \\cos{\\left(2 ta \\right)} - L_{2} \\cos{\\left(2 ta + \\frac{\\pi}{3} \\right)} - 2 M_{0} + 2 M_{2} \\sin{\\left(2 ta + \\frac{\\pi}{6} \\right)}\\)\n\n\n\nlm.evalf(subs={ta: 0})\n\n\\(\\displaystyle 2.0 L_{0} + 0.5 L_{2} - 2.0 M_{0} + M_{2}\\)",
+    "crumbs": [
+      "dq"
+    ]
+  },
+  {
+    "objectID": "rotor.html",
+    "href": "rotor.html",
+    "title": "rotor",
+    "section": "",
+    "text": "poles\nouter diameter\ninner diameter fraction\npole embrace fraction\nmagnet thickness fraction\nstack length\nmagnet grade\nsteel grade\n\n\n\n\n\n\n\n\n\n\n\nsource\n\n\n\n rotor ()\n\nInitialize self. See help(type(self)) for accurate signature.\n\n\n\n\nr1 = rotor()\nr1.valid_design()\n\nInvalid rotor poles for electric motor\n\n\n0\n\n\n\nr1 = rotor()\nr1.poles = 10\nr1.outerdiameter = 73\nr1.innerdiameter_fraction = 25/73\nr1.poleembrace = 0.83\nr1.magnetthickness_fraction = 2*4/(73 - 25)\nr1.stacklength = 60\nr1.magnetgrade = 'N30'\nr1.steel_grade = '50C470'\nr1.valid_design()\nr1.valid\n\nTrue",
+    "crumbs": [
+      "rotor"
+    ]
+  },
+  {
+    "objectID": "rotor.html#rotor-class-is-defined-by-the-following-parameters",
+    "href": "rotor.html#rotor-class-is-defined-by-the-following-parameters",
+    "title": "rotor",
+    "section": "",
+    "text": "poles\nouter diameter\ninner diameter fraction\npole embrace fraction\nmagnet thickness fraction\nstack length\nmagnet grade\nsteel grade\n\n\n\n\n\n\n\n\n\n\n\nsource\n\n\n\n rotor ()\n\nInitialize self. See help(type(self)) for accurate signature.\n\n\n\n\nr1 = rotor()\nr1.valid_design()\n\nInvalid rotor poles for electric motor\n\n\n0\n\n\n\nr1 = rotor()\nr1.poles = 10\nr1.outerdiameter = 73\nr1.innerdiameter_fraction = 25/73\nr1.poleembrace = 0.83\nr1.magnetthickness_fraction = 2*4/(73 - 25)\nr1.stacklength = 60\nr1.magnetgrade = 'N30'\nr1.steel_grade = '50C470'\nr1.valid_design()\nr1.valid\n\nTrue",
+    "crumbs": [
+      "rotor"
+    ]
+  }
+]
